@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Navegación Desplegable</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a, .dropbtn {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover, .dropdown:hover .dropbtn {
+            background-color: #555;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Estructura HTML -->
+    <nav>
+        <ul class="menu">
+            <li><a href="#">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Servicios</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Diseño Web</a></li>
+                    <li><a href="#">Desarrollo Web</a></li>
+                    <li><a href="#">SEO</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Productos</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Software</a></li>
+                    <li><a href="#">Hardware</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener("click", function(event) {
+                    event.stopPropagation(); // Evita que el evento se propague
+                    const dropdownContent = this.querySelector('.dropdown-content');
+                    dropdownContent.classList.toggle('show');
+                });
+            });
+
+            // Cierra los submenús si se hace clic fuera de ellos
+            window.addEventListener("click", function() {
+                dropdowns.forEach(dropdown => {
+                    const dropdownContent = dropdown.querySelector('.dropdown-content');
+                    if (dropdownContent.classList.contains('show')) {
+                        dropdownContent.classList.remove('show');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
